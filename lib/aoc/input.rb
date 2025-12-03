@@ -10,6 +10,10 @@ module Aoc
       lines(path).map { |l| l.to_i }
     end
 
+    def ints_array(path)
+      lines(path).map { |l| l.strip.chars.map(&:to_i) }
+    end
+
     def raw(path)
       File.read(path, chomp: true)
     end
