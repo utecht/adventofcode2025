@@ -28,20 +28,18 @@ def part1(lines, num)
   num.times do |i|
     d, a, b = ppoints.pop
     ppoints.pop.inspect
-    as = "#{a[0]},#{a[1]},#{a[2]}"
-    bs = "#{b[0]},#{b[1]},#{b[2]}"
     added = false
     circuits.each do |cs|
-      if cs.include?(as) || cs.include?(bs)
-        cs.add(as)
-        cs.add(bs)
+      if cs.include?(a) || cs.include?(b)
+        cs.add(a)
+        cs.add(b)
         added = true
       end
     end
     unless added
       set = Set.new
-      set.add(as)
-      set.add(bs)
+      set.add(a)
+      set.add(b)
       circuits << set
     end
   end
@@ -64,7 +62,6 @@ def part1(lines, num)
     circuits = merged_circuits
   end
   circuits.sort! { |a,b| b.count <=> a.count }
-  puts circuits.map(&:count).inspect
   circuits[0].count * circuits[1].count * circuits[2].count
 end
 
@@ -110,22 +107,20 @@ def part2(lines)
   done = false
   until done 
     d, a, b = ppoints.pop
-    as = "#{a[0]},#{a[1]},#{a[2]}"
-    bs = "#{b[0]},#{b[1]},#{b[2]}"
     last_x1 = a[0]
     last_x2 = b[0]
     added = false
     circuits.each do |cs|
-      if cs.include?(as) || cs.include?(bs)
-        cs.add(as)
-        cs.add(bs)
+      if cs.include?(a) || cs.include?(b)
+        cs.add(a)
+        cs.add(b)
         added = true
       end
     end
     unless added
       set = Set.new
-      set.add(as)
-      set.add(bs)
+      set.add(a)
+      set.add(b)
       circuits << set
     end
     #ppoints.reject! { |p| p[0] == a || p[1] == b }
